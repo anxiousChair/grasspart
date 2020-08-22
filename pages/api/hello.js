@@ -1,6 +1,14 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+const handler = require('next-connect')()
+const passport = require("../../lib/passport.js")
 
-export default (req, res) => {
-  res.statusCode = 200
-  res.json({ name: 'John Doe' })
-}
+ 
+
+handler.use(passport.authenticate("local").use((req,res) =>{
+	res.write(req.user)
+	res.end()
+})
+
+ 
+
+export default handler
+
