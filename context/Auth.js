@@ -22,7 +22,7 @@ function AuthProvider(props){
 	}
 	
 	return (
-		<AuthContext.Provider value={{isAuth: !!user, user,login}}>
+		<AuthContext.Provider value={{isAuth: !!user, user, login, list}}>
 			{props.children}
 		</AuthContext.Provider>
 	)
