@@ -3,21 +3,16 @@ import {Container, Form, Button} from "react-bootstrap"
 import ProtectRoute from "../hoc/ProtectRoute"
 
  function Login(){
-	const {user, login,list} = useAuth()
+	const {user,list} = useAuth()
 	
-	const handleForm = (e) => {
-		const username = document.getElementById("formUsername").value
-		const password = document.getElementById("formPassword").value
-		login(username,password)
-	}
+
 
 	let credentials = []
 
 	for (let item of list){
-	credentials.push(<p><b>username</b>: {item.username}  <b>password</b>: {item.password}</p>)
+		credentials.push(<p><b>username</b>: {item.username}  <b>password</b>: {item.password}</p>)
 	}
 	
-	console.log(list)
 
 	return (
 		<Container>
@@ -34,7 +29,7 @@ import ProtectRoute from "../hoc/ProtectRoute"
   				</Form.Group>
   				
   				
-  				<Button onClick={handleForm} variant="primary">Submit</Button>
+  				<Button  variant="primary">Submit</Button>
 			</Form>
 			<p>you can use these credentials for now (database is yet to be implemented)</p>
 			{credentials}
@@ -43,4 +38,6 @@ import ProtectRoute from "../hoc/ProtectRoute"
 	)
 }
 
-export default ProtectRoute(Login,true, "/dashboard")
+export const getServerSideProps = ProtectRoute(true,"/dashboard")
+
+export default Login

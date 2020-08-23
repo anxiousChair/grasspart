@@ -16,6 +16,7 @@
     "csurf": "^1.11.0",
     "js-cookie": "^2.2.1",
     "next": "9.5.2",
+    "next-auth": "^3.1.0",
     "next-connect": "^0.8.1",
     "next-iron-session": "^4.1.8",
     "passport": "^0.4.1",

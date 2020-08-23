@@ -10,4 +10,6 @@ function Dashboard(){
 }
 
 
-export default ProtectRoute(Dashboard)
+export const getServerSideProps = ProtectRoute(false,false,"/loginnnn")
+
+export default Dashboard
