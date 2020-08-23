@@ -1,7 +1,8 @@
 import {useAuth} from "../context/Auth"
 import {Container, Form, Button} from "react-bootstrap"
+import ProtectRoute from "../hoc/ProtectRoute"
 
-export default function Home(props){
+ function Login(){
 	const {user, login,list} = useAuth()
 	
 	const handleForm = (e) => {
@@ -41,3 +42,5 @@ export default function Home(props){
 		</Container>
 	)
 }
+
+export default ProtectRoute(Login,true, "/dashboard")
