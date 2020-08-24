@@ -10,6 +10,6 @@ function Dashboard(){
 }
 
 
-export const getServerSideProps = ProtectRoute(false,false,"/loginnnn")
+export const getServerSideProps = withProtect(false,false,"/loginnnn")
 
 export default Dashboard

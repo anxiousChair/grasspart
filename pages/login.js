@@ -38,6 +38,6 @@ import ProtectRoute from "../hoc/ProtectRoute"
 	)
 }
 
-export const getServerSideProps = ProtectRoute(true,"/dashboard")
+export const getServerSideProps = withProtect(true,"/dashboard")
 
 export default Login

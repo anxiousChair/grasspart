@@ -5,10 +5,10 @@ import {passport} from "../lib/passport.js"
 import nc from "next-connect"
 
 
-export default function ProtectRoute(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"){
+export default function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"){
 	return async function({req,res})
 	{
-		const handler = nc().use(passport.initialize()).use(passport.session())
+		const handler = nc().use(passport.initialize())
 		try{
 			
 			await handler.apply(req,res);
