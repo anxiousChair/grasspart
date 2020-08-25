@@ -8,7 +8,10 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 
 		
 		console.log("protectroute")
-		const {id} = req.session.get("session_id")
+		let token = req.session.get("session_id")
+		if(!token) token = {id:""}
+		
+		const {id} = token
 		if(!id && !guest)
 		{
 			res.statusCode = 302
@@ -20,7 +23,7 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 			res.setHeader("Location",redirectIfAuth)
 		}
 
-		return {props:{id}}
+		return {props:{id:token.id}}
 
 
 	},

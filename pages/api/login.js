@@ -10,6 +10,7 @@ const list = [{
 
 
 async function handler(req,res,session){
+	let success = false
 	console.log("loginapi")
 	console.log(req.session.get("session_id"))
 	console.log(req.body)
@@ -23,6 +24,10 @@ async function handler(req,res,session){
 			console.log("success")
 			break
 		}
+	}
+	if(success){
+		res.statusCode = 302
+		res.setHeader("Location","/dashboard")
 	}
 	res.end()
 }
