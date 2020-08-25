@@ -1,24 +1,20 @@
 import {useAuth} from "../context/Auth"
-import {useRouter} from "next/router"
-import {useEffect} from "react"
-import {passport} from "../lib/passport.js"
+import {localstrat} from "../lib/passport.js"
 import nc from "next-connect"
+import {configSession} from "../lib/ironSession.js"
+import {withIronSession} from "next-iron-session"
 
 
-export default function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"){
-	return async function({req,res})
-	{
-		const handler = nc().use(passport.initialize())
-		try{
-			
-			await handler.apply(req,res);
-		}
-		catch(e){
-			
-		}
-		console.log(req.url)
-
+function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"){
+	return withIronSession(({req,res})=>{
+		console.log(req.session.get("user"))
 		return {props:{}}
-	}
+	},{
+	cookieName:"timestamp",
+	password:process.env.SECRET
+	})
+		
 	
 }
+
+export {withProtect}

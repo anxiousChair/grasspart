@@ -1,6 +1,6 @@
 import {useAuth} from "../context/Auth"
 import {Container, Form, Button} from "react-bootstrap"
-import ProtectRoute from "../hoc/ProtectRoute"
+import {withProtect} from "../hoc/ProtectRoute"
 
  function Login(){
 	const {user,list} = useAuth()
@@ -17,19 +17,19 @@ import ProtectRoute from "../hoc/ProtectRoute"
 	return (
 		<Container>
 		{!user && <h1>You are guest</h1> || <h1>You are {user}</h1>}
-			<Form>
+			<Form action="/api/login" method="POST">
   				<Form.Group controlId="formUsername">
     					<Form.Label>Username <small>soon to be email</small> </Form.Label>
-    					<Form.Control type="text" placeholder="Enter username"/>
+    					<Form.Control type="text" placeholder="Enter username" name="username"/>
   				</Form.Group>
 
   				<Form.Group controlId="formPassword">
     					<Form.Label>Password</Form.Label>
-    					<Form.Control type="password" placeholder="Password"/>
+    					<Form.Control type="password" placeholder="Password" name="password"/>
   				</Form.Group>
   				
   				
-  				<Button  variant="primary">Submit</Button>
+  				<Button  type="submit" variant="primary">Submit</Button>
 			</Form>
 			<p>you can use these credentials for now (database is yet to be implemented)</p>
 			{credentials}
