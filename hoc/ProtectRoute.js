@@ -9,6 +9,17 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 		
 		console.log("protectroute")
 		const {id} = req.session.get("session_id")
+		if(!id && !guest)
+		{
+			res.statusCode = 302
+			res.setHeader("Location", redirectIfNotAuth)
+		}
+		if(id && redirectIfAuth)
+		{
+			res.statusCode = 302
+			res.setHeader("Location",redirectIfAuth)
+		}
+
 		return {props:{id}}
 
 

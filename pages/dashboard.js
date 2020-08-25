@@ -4,7 +4,7 @@ import {withProtect} from "../hoc/ProtectRoute.js"
 function Dashboard(props){
 	return (
 		<div>
-			<h1>{props.user}</h1>
+			<h1>{props.id}</h1>
 		</div>
 	)
 }
