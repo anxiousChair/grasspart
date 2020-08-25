@@ -1,35 +1,43 @@
 import {useAuth} from "../context/Auth"
 import {Container, Form, Button} from "react-bootstrap"
 import {withProtect} from "../hoc/ProtectRoute"
+import {useRef} from "react"
 
- function Login(){
+
+
+ function Login(props){
 	const {user,list} = useAuth()
-	
+	const usernameRef = useRef(null)
+	const passwordRef = useRef(null)
+	const axios = require("axios")
 
 
 	let credentials = []
 
-	for (let item of list){
-		credentials.push(<p><b>username</b>: {item.username}  <b>password</b>: {item.password}</p>)
+	const handleForm = function(){
+		axios.post('/api/login', {
+			username: usernameRef.current.value,
+			password: passwordRef.current.value
+		  })
 	}
 	
 
 	return (
 		<Container>
-		{!user && <h1>You are guest</h1> || <h1>You are {user}</h1>}
-			<Form action="/api/login" method="POST">
+		{!props.id && <h1>You are guest</h1> || <h1>You are {props.id	}</h1>}
+			<Form >
   				<Form.Group controlId="formUsername">
     					<Form.Label>Username <small>soon to be email</small> </Form.Label>
-    					<Form.Control type="text" placeholder="Enter username" name="username"/>
+    					<Form.Control type="text" placeholder="Enter username" name="username" ref={usernameRef}/>
   				</Form.Group>
 
   				<Form.Group controlId="formPassword">
     					<Form.Label>Password</Form.Label>
-    					<Form.Control type="password" placeholder="Password" name="password"/>
+    					<Form.Control type="password" placeholder="Password" name="password" ref={passwordRef}/>
   				</Form.Group>
   				
   				
-  				<Button  type="submit" variant="primary">Submit</Button>
+  				<Button onClick={handleForm} variant="primary">Submit</Button>
 			</Form>
 			<p>you can use these credentials for now (database is yet to be implemented)</p>
 			{credentials}
