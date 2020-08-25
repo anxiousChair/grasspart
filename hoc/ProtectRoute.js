@@ -1,5 +1,5 @@
 import {useAuth} from "../context/Auth"
-
+import {configSession} from"../lib/ironSession.js"
 import {withIronSession} from "next-iron-session"
 
 
@@ -27,15 +27,8 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 
 
 	},
-	{
-	cookieName:"secret",
-	password:process.env.SECRET,
-	cookieOptions:{
-		secure:false
-	}
-	})
+	configSession)
 		
-	
 }
 
 export {withProtect}
