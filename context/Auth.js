@@ -4,9 +4,7 @@ import axios from "axios"
 const AuthContext = createContext();
 
 function AuthProvider(props){
-	const list = [{username:"admin",password:"admin123",token:"verifiedadmin"},{username:"koko69",password:"ameame123",token:"verifieduser"}]
 	const [user, setUser] = useState(null)
-	
 	
 	return (
 		<AuthContext.Provider value={{isAuthenticated: !!user, user, list}}>
