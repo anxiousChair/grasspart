@@ -1,15 +1,18 @@
 import {useAuth} from "../context/Auth"
 import {Container, Form, Button} from "react-bootstrap"
 import {withProtect} from "../hoc/ProtectRoute"
-import {useRef} from "react"
+import {useRef,useState} from "react"
+import {useRouter} from "next/router"
 
 
 
  function Login(props){
-	const {user,list} = useAuth()
+	const {user} = useAuth()
 	const usernameRef = useRef(null)
 	const passwordRef = useRef(null)
 	const axios = require("axios")
+	const [test,setTest] = useState(null)
+	const  router = useRouter()
 
 
 	let credentials = []
@@ -18,7 +21,7 @@ import {useRef} from "react"
 		axios.post('/api/login', {
 			username: usernameRef.current.value,
 			password: passwordRef.current.value
-		  })
+		  }).then(()=>router.push("/dashboard")).catch((err) => alert("catch" +err.response.status))
 	}
 	
 

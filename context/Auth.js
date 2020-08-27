@@ -6,8 +6,9 @@ const AuthContext = createContext();
 function AuthProvider(props){
 	const [user, setUser] = useState(null)
 	
+	
 	return (
-		<AuthContext.Provider value={{isAuthenticated: !!user, user, list}}>
+		<AuthContext.Provider value={{isAuthenticated: !!user, user}}>
 			{props.children}
 		</AuthContext.Provider>
 	)

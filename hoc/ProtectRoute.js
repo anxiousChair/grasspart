@@ -6,7 +6,7 @@ import {withIronSession} from "next-iron-session"
 function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"){
 	return withIronSession(({req,res})=>{
 
-		
+		console.log("Got calleeeeeeeeeeeeeee")
 		console.log("protectroute")
 		let token = req.session.get("session_id")
 		if(!token) token = {id:""}
