@@ -7,27 +7,21 @@ import {useRouter} from "next/router"
 
 
  function Login(props){
-	const {user} = useAuth()
 	const usernameRef = useRef(null)
 	const passwordRef = useRef(null)
 	const axios = require("axios")
-	const [test,setTest] = useState(null)
-	const  router = useRouter()
-
-
-	let credentials = []
+	const router = useRouter()
 
 	const handleForm = function(){
 		axios.post('/api/login', {
 			username: usernameRef.current.value,
 			password: passwordRef.current.value
-		  }).then(()=>router.push("/dashboard")).catch((err) => alert("catch" +err.response.status))
+		  }).then(()=>router.push("/dashboard")).catch((err) => alert("catch" +err))
 	}
 	
 
 	return (
 		<Container>
-		{!props.id && <h1>You are guest</h1> || <h1>You are {props.id	}</h1>}
 			<Form >
   				<Form.Group controlId="formUsername">
     					<Form.Label>Username <small>soon to be email</small> </Form.Label>
@@ -43,7 +37,6 @@ import {useRouter} from "next/router"
   				<Button onClick={handleForm} variant="primary">Submit</Button>
 			</Form>
 			<p>you can use these credentials for now (database is yet to be implemented)</p>
-			{credentials}
 			<p> ( still working on a much secure session handling) </p>
 		</Container>
 	)

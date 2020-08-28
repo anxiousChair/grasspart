@@ -1,15 +1,16 @@
 import {useAuth} from "../context/Auth"
-import {withProtect} from "../hoc/ProtectRoute.js"
+import {withProtect,ProtectRoute} from "../hoc/ProtectRoute.js"
 
 function Dashboard(props){
+
 	return (
 		<div>
-			<h1>{props.id}</h1>
+			<h1>{props.user}</h1>
 		</div>
 	)
 }
 
 
-export const getServerSideProps = withProtect()
+export const getServerSideProps = withProtect(false)
 
-export default Dashboard
+export default ProtectRoute(Dashboard)

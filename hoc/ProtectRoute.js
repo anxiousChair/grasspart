@@ -7,7 +7,7 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 	return withIronSession(({req,res})=>{
 
 		console.log("Got calleeeeeeeeeeeeeee")
-		console.log("protectroute")
+		console.log("withProtect")
 		let token = req.session.get("session_id")
 		if(!token) token = {id:""}
 		
@@ -31,4 +31,16 @@ function withProtect(guest=false,redirectIfAuth=false,redirectIfNotAuth="/login"
 		
 }
 
-export {withProtect}
+
+function ProtectRoute(Component){
+	return (props) => {
+		const {user,authorize} = useAuth()
+		authorize(props.id)
+	
+		return (
+				<Component user={props.id} {...props}/>
+		)
+	}
+}
+
+export {withProtect,ProtectRoute}
