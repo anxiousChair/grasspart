@@ -16,7 +16,7 @@ import {useRouter} from "next/router"
 		axios.post('/api/login', {
 			username: usernameRef.current.value,
 			password: passwordRef.current.value
-		  }).then(()=>router.push("/dashboard")).catch((err) => alert("catch" +err))
+		  }).then(()=>router.push("/browse")).catch((err) => alert("catch" +err))
 	}
 	
 
@@ -42,6 +42,6 @@ import {useRouter} from "next/router"
 	)
 }
 
-export const getServerSideProps = withProtect(true,"/dashboard")
+export const getServerSideProps = withProtect(true,"/browse")
 
 export default Login
