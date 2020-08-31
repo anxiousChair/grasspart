@@ -7,7 +7,10 @@ import {configSession} from "../../lib/ironSession.js"
 async function handler(req,res,session){
 	let success = false
 	const User = require("../../models/User.js")
-	User.connect()
+	if(await User.connect() === 500){
+			res.write("db bad")
+			res.end()
+	}
 	const result = await User.verifyUser(req.body)
 	console.log(result)
 	if(result){
