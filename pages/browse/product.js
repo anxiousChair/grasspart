@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar"
 
 function Product(props){
 	return (
-
+		<><p>ose</p></>
 	)
 }
 
