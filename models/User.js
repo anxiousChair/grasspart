@@ -1,7 +1,6 @@
 const agent = require("../lib/pg_db.js")
 const blanket = require("crypto-js")
 
-agent.connect()
 
 const User = {
 	create: async(data)=>{
@@ -37,6 +36,10 @@ const User = {
 		const coldy = blanket.SHA256(credentials.username + credentials.password).toString(blanket.enc.Base64)
 		if(data.user_password === coldy) return true
 		return false
+	},
+	connect: async () =>{
+		let res = await agent.connect()
+		return res
 	}
 }
 
