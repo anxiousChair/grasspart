@@ -1,5 +1,3 @@
-import {useAuth} from "../context/Auth"
-import {withProtect,ProtectRoute} from "../hoc/ProtectRoute.js"
 
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
@@ -38,6 +36,6 @@ function Browse(props){
 }
 
 
-export const getServerSideProps = withProtect(false)
 
-export default ProtectRoute(Browse)
+
+export default Browse
