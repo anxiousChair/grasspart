@@ -38,7 +38,8 @@
     "swr": "^0.3.0",
     "uid-safe": "^2.1.5",
     "uuid": "^8.3.0",
-    "uuidv4": "^6.2.3"
+    "uuidv4": "^6.2.3",
+    "validator": "^13.1.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.0",
