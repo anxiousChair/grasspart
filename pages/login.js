@@ -1,5 +1,4 @@
 import {useAuth} from "../context/Auth"
-import {Container, Form, Button} from "react-bootstrap"
 import {withProtect} from "../hoc/ProtectRoute"
 import {useRef,useState} from "react"
 import {useRouter} from "next/router"
@@ -21,27 +20,19 @@ import {useRouter} from "next/router"
 	
 
 	return (
-		<Container>
-			<Form >
-  				<Form.Group controlId="formUsername">
-    					<Form.Label>Username <small>soon to be email</small> </Form.Label>
-    					<Form.Control type="text" placeholder="Enter username" name="username" ref={usernameRef}/>
-  				</Form.Group>
-
-  				<Form.Group controlId="formPassword">
-    					<Form.Label>Password</Form.Label>
-    					<Form.Control type="password" placeholder="Password" name="password" ref={passwordRef}/>
-  				</Form.Group>
-  				
-  				
-  				<Button onClick={handleForm} variant="primary">Submit</Button>
-			</Form>
-			<p>you can use these credentials for now (database is yet to be implemented)</p>
-			<p> ( still working on a much secure session handling) </p>
-		</Container>
+		<div className="container mx-auto">
+			<div className="w-2/3 md:w-1/3 mx-auto p-5 rounded mt-5">
+				<form className="flex flex-col flex-grow items-center">
+					<input type="text" placeholder="Username" className="mb-5 border-b border-gray-800"/>
+					<input type="password" placeholder="Password"/>
+					<button type="button" className="px-1 w-1/4  border border-gray-800 rounded mt-3 text-sm">Login</button>
+					<p>or</p>
+					<a className="underline text-sm">Forgot password?</a>
+				</form>
+			</div>
+		</div>
 	)
 }
 
-export const getServerSideProps = withProtect(true,"/browse")
 
 export default Login

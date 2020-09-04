@@ -1,5 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-
+import "../styles.css"
 import {AuthProvider} from "../context/Auth.js"
 
 function MyApp({ Component, pageProps }) {
