@@ -21,13 +21,13 @@ import {useRouter} from "next/router"
 
 	return (
 		<div className="container mx-auto">
-			<div className="w-2/3 md:w-1/3 mx-auto p-5 rounded mt-5">
-				<form className="flex flex-col flex-grow items-center">
-					<input type="text" placeholder="Username" className="mb-5 border-b border-gray-800"/>
+			<div className="w-2/3 mx-auto p-5 rounded mt-12">
+				<form className="flex flex-col flex-grow">
+					<input type="text" placeholder="Username" className="mb-8 border-b border-gray-800"/>
 					<input type="password" placeholder="Password"/>
-					<button type="button" className="px-1 w-1/4  border border-gray-800 rounded mt-3 text-sm">Login</button>
-					<p>or</p>
-					<a className="underline text-sm">Forgot password?</a>
+					<button type="button" className="px-1 w-1/4  border border-gray-800 rounded mt-3 text-sm mx-auto">Login</button>
+					<p className="mx-auto">or</p>
+					<a className="underline text-sm mx-auto">Forgot password?</a>
 				</form>
 			</div>
 		</div>
