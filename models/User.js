@@ -40,6 +40,10 @@ const User = {
 	connect: async () =>{
 		let res = await agent.connect()
 		return res
+	},
+	disconnect: async () => {
+		let res = await agent.disconnect()
+		return res
 	}
 }
 

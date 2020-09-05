@@ -2,7 +2,7 @@ import {useAuth} from "../context/Auth"
 import {withProtect} from "../hoc/ProtectRoute"
 import {useRef,useState} from "react"
 import {useRouter} from "next/router"
-
+import Link from "next/link"
 
 
  function Login(props){
@@ -20,16 +20,24 @@ import {useRouter} from "next/router"
 	
 
 	return (
-		<div className="container mx-auto">
-			<div className="w-2/3 mx-auto p-5 rounded mt-12">
-				<form className="flex flex-col flex-grow">
-					<input type="text" placeholder="Username" className="mb-8 border-b border-gray-800"/>
-					<input type="password" placeholder="Password"/>
-					<button type="button" className="px-1 w-1/4  border border-gray-800 rounded mt-3 text-sm mx-auto">Login</button>
-					<p className="mx-auto">or</p>
-					<a className="underline text-sm mx-auto">Forgot password?</a>
-				</form>
-			</div>
+		<div className="w-full max-w-xs mx-auto mt-16">
+			<form className="border shadow-md rounded px-8 py-8">
+				<div className="mb-6">
+					<label className="tracking-wide font-bold text-xs text-gray-700 block mb-1 uppercase">Username</label>
+					<input className="tracking-wide bg-gray-200 text-gray-700 w-full border border-gray-300 rounded px-3 py-2" placeholder="Username"/>
+				</div>
+				<div className="mb-6">
+					<label className="tracking-wide font-bold text-xs text-gray-700 block mb-1 uppercase">Password</label>
+					<input type="password" className="tracking-wide bg-gray-200 text-gray-700 w-full border border-gray-300 rounded px-3 py-2" placeholder="Password"/>
+				</div>
+				<div className="mb-6">
+					<button type="button" className="px-2 py-1 w-full bg-gray-700 rounded text-gray-200 tracking-wide hover:bg-gray-500 hover:text-gray-700">Login</button>
+				</div>
+				<a className="mb-4 text-center text-xs underline text-gray-800 block">Forgot password?</a>
+				<p className="text-center text-gray-800 text-xs">or</p>
+				<Link href="/register"><a className="mt-2  text-center text-xs text-gray-800 block underline ">Create an account.</a></Link>
+				
+			</form>
 		</div>
 	)
 }
