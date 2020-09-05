@@ -4,16 +4,16 @@ function Index(){
 	return (
 		<>
 			<div>
-			<nav className="flex justify-between flex-col sm:flex-row bg-gray-800 text-gray-300 p-4">
+			<nav className="flex justify-between sm:items-center flex-col sm:flex-row bg-gray-800 text-gray-300 p-4">
 
-				<div className="flex flex-shrink-0 md:mr-6">
+				<div className="flex flex-shrink-0 sm:mr-6">
 					<h1 className="text-md uppercase text-bold border border-white rounded p-2 inline-block">Company Name</h1>
 				</div>
 
-				<div className="w-full items-center mt-2 sm:mt-0">
+				<div className="w-full mt-2 sm:mt-0">
 					<div className="flex flex-col sm:flex-row">
-						<Link href="/browse"><a className="inline-block ml-3 md:ml-0 md:mr-4 mt-2 md:mt-0">Browse</a></Link>
-						<a className="inline-block ml-3 md:ml-0 md:mr-4 mt-2 md:mt-0">About</a>
+						<Link href="/browse"><a className="block sm:inline-block ml-3 sm:ml-0 sm:mr-4 mt-2 sm:mt-0">Browse</a></Link>
+						<a className="block sm:inline-block ml-3 sm:ml-0 sm:mr-4 mt-2 sm:mt-0">About</a>
 					</div>
 				</div>
 			</nav>

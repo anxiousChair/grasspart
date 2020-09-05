@@ -1,7 +1,5 @@
 module.exports = {
+    purge:false,
 	theme:{
-		screens:{
-			sm:'530px'
-		}
 	}
 }
