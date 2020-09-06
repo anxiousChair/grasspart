@@ -23,6 +23,7 @@ async function handler(req,res,session){
 	
 	
 	connected = await User.connect()
+	console.log(connected,body)
 	
 	if(body && connected){
 		const result = await User.verifyUser(req.body)
