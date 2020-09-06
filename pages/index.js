@@ -4,7 +4,7 @@ function Index(){
 	return (
 		<>
 			<div>
-			<nav className="flex justify-between sm:items-center flex-col sm:flex-row bg-gray-800 text-gray-300 p-4">
+			<nav className="fixed flex justify-between sm:items-center flex-col sm:flex-row bg-gray-800 text-gray-300 p-4 w-full">
 
 				<div className="flex flex-shrink-0 sm:mr-6">
 					<h1 className="text-md uppercase text-bold border border-white rounded p-2 inline-block">Company Name</h1>
@@ -18,7 +18,7 @@ function Index(){
 				</div>
 			</nav>
 			
-				<h1 className="text-4xl text-center p-8 text-gray-800">Company Name</h1>
+				<h1 className="pt-48 sm:pt-32 text-4xl text-center p-8 text-gray-800">Company Name</h1>
 				
 				<div className="flex justify-center mb-16 text-xs sm:text-base">
 					<button className="border-b border-black px-2 sm:px-3 py-1">Log in</button>
