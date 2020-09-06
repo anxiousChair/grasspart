@@ -4,6 +4,7 @@ import {configSession} from "../../lib/ironSession.js"
 
 const User = require("../../models/User")
 
+
 async function handler(req,res,session){
 	console.log(req.headers["x-real-ip"],req.headers["x-forwarded-for"])
 	let time = new Date()
