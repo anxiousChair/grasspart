@@ -5,11 +5,11 @@ import {configSession} from "../../lib/ironSession.js"
 const User = require("../../models/User")
 
 async function handler(req,res,session){
-	console.log(req.socket.remoteAddress)
+	console.log(req.headers["x-real-ip"],req.headers["x-forwarded-for"])
 	let time = new Date()
 	console.log(JSON.stringify({
 		method:req.method,
-		rem_addr: req.connection.remoteAddress,
+		rem_addr: req.headers["x-real-ip"] || req.headers["x-forwarded-for"],
 		host: req.headers["host"],
 		url: req.url,
 		agent: req.headers["user-agent"],
