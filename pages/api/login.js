@@ -5,6 +5,7 @@ import {configSession} from "../../lib/ironSession.js"
 const User = require("../../models/User")
 
 async function handler(req,res,session){
+	console.log(req.socket.remoteAddress)
 	let time = new Date()
 	console.log(JSON.stringify({
 		method:req.method,
