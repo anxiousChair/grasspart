@@ -1,21 +1,24 @@
+import Layout from "../components/layout/Layout"
 
 function Browse(props){
-	let nav_right = (<div className="border border-white my-auto">
-					<a>Profile</a>
-					<a>Profile</a>
-					<a>Profile</a>
-				</div>)
+	
 	
 	return (
-		<>
-			<div className="w-full flex sm:flex-row justify-between sm:items-center bg-gray-800 text-gray-300 px-2 py-3 flex-grow">
-				<nav className="flex flex-col sm:flex-row flex-grow">
-					<a>Testing</a>
-					<a>Testing</a>
-				</nav>
-				{nav_right}
+		<Layout>
+			<div className="w-full flex flex-col sm:flex-row flex-grow">
+				<div id="buyer-list" className="py-4 w-full bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center">
+					<div id="item-card" className="w-4/5 shadow-md">
+					<img className="h-48"/>						
+					</div>
+				</div>
+				
+				<div className="w-full bg-gray-300 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center">
+					<div id="item-card" className="w-1/2 bg-gray-800">
+						<h1>Title</h1>
+					</div>
+				</div>
 			</div>
-		</>
+		</Layout>
 	)
 }
 
