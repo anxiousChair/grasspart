@@ -36,6 +36,8 @@
     "react-hook-form": "^6.4.0",
     "scrypt-js": "^3.0.1",
     "swr": "^0.3.0",
+    "tether": "^1.4.7",
+    "tether-drop": "^1.4.2",
     "uid-safe": "^2.1.5",
     "uuid": "^8.3.0",
     "uuidv4": "^6.2.3",
