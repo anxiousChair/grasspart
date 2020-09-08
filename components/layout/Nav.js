@@ -14,7 +14,7 @@ export default function Nav(){
 					<h1 className="text-sm sm:text-lg uppercase font-bold tracking-wide">GRASSPART</h1>
 				</div>
 				<div className="w-full mr-2 text-gray-700">
-					<input placeholder="Search" className="sm:block mx-auto sm:mx-0 rounded bg-gray-200 w-full sm:w-1/2 px-2 py-1"/>
+					<input placeholder="Search" className="sm:block mx-auto sm:mx-0 rounded  w-full sm:w-1/2 px-2 py-1"/>
 				</div>
 				{dynamic_login}
 			</nav>
