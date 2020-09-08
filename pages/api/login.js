@@ -6,11 +6,10 @@ const User = require("../../models/User")
 
 
 async function handler(req,res,session){
-	console.log(req.socket.remoteAddr
 	let time = new Date()
 	console.log(JSON.stringify({
 		method:req.method,
-		rem_addr: req.headers["x-real-ip"] + "--" + req.headers["x-forwarded-for"],
+		rem_addr: req.headers["x-real-ip"] + "--" + req.headers["x-forwarded-for"] + "--" + req.socket.remoteAddress,
 		host: req.headers["host"],
 		url: req.url,
 		agent: req.headers["user-agent"],

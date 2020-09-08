@@ -5,16 +5,38 @@ function Browse(props){
 	
 	return (
 		<Layout>
-			<div className="w-full flex flex-col sm:flex-row flex-grow">
-				<div id="buyer-list" className="py-4 w-full bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center">
-					<div id="item-card" className="w-4/5 shadow-md">
-					<img className="h-48"/>						
+			<div className="pt-16 w-full flex flex-col sm:flex-row flex-grow">
+				<div id="buyer-list" className="py-4 w-full dbg-bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-around items-center sm:items-start ">
+					<div id="item-card" className="border w-4/5 sm:w-2/5 shadow mb-8 py-3 px-5 rounded">
+						<img className="w-full px-1 rounded mx-auto placeholder-black" />
+						<h1 className="font-bold">Item Title</h1>
+						<h1 className="font-bold">Price</h1>
+						<p className="">Meetup loc</p>
+						
+					</div>
+					<div id="item-card" className="border w-4/5 sm:w-2/5 shadow mb-8 py-3 px-5 rounded">
+						<img className="w-full px-1 rounded mx-auto placeholder-black" />
+						<h1 className="font-bold">Item Title</h1>
+						<h1 className="font-bold">Price</h1>
+						<p className="">Meetup loc</p>
+						
+					</div>
+					<div id="item-card" className="border w-4/5 sm:w-2/5 shadow mb-8 py-3 px-5 rounded">
+						<img className="w-full px-1 rounded mx-auto placeholder-black" />
+						<h1 className="font-bold">Item Title</h1>
+						<h1 className="font-bold">Price</h1>
+						<p className="">Meetup loc</p>
+						
 					</div>
 				</div>
 				
-				<div className="w-full bg-gray-300 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center">
-					<div id="item-card" className="w-1/2 bg-gray-800">
-						<h1>Title</h1>
+				<div id="seller-list" className="py-4 w-full dbg-bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-around items-center sm:items-start ">
+					<div id="item-card" className="border w-4/5 sm:w-2/5 shadow mb-8 py-3 px-5 rounded">
+						<img className="w-full px-1 rounded mx-auto placeholder-black" />
+						<h1 className="font-bold">Item Title</h1>
+						<h1 className="font-bold">Price</h1>
+						<p className="">Meetup loc</p>
+						
 					</div>
 				</div>
 			</div>

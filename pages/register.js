@@ -1,6 +1,15 @@
 import Link from "next/link"
 
+import {useRouter} from "next/router"
+const axios = require("axios")
+
 function Register(){
+	const router = useRouter()
+	
+	const handleForm = function(){
+		
+	}
+	
 	return (
 		<div className="w-full max-w-xs mx-auto mt-16">
 			<form className="border shadow-md rounded px-8 py-8">
