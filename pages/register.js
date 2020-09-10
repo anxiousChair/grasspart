@@ -7,7 +7,6 @@ function Register(){
 	const router = useRouter()
 	
 	const handleForm = function(){
-		
 	}
 	
 	return (
