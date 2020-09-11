@@ -1,0 +1,32 @@
+body{
+	/*background-color: #F2FCF5;*/
+}
+
+.bg-color-2 {
+	background-color: #61BB85;
+}
+
+.bg-color-1{
+	background-color: #F2FCF5;
+}
+
+.bg-color-3{
+	background-color: #1D1D35;
+}
+
+.text-color-1{
+	color:#F2FCF5;
+	border-color: #F2FCF5
+}
+
+.text-color-2{
+	color: #61BB85;
+}
+
+.text-color-3{
+	color: #1D1D35;
+}
+
+.text-color-4{
+	color: #6C9B7D;
+}

@@ -4,36 +4,30 @@ function Index(){
 	return (
 		<>
 			<div>
-			<nav className="fixed flex justify-between sm:items-center flex-col sm:flex-row bg-gray-800 text-gray-300 p-4 w-full">
+			<nav className="bg-color-2 fixed flex justify-center sm:justify-between items-center flex-col sm:flex-row bg-gray-800 text-color-1 p-2 sm:p-3 w-full">
 
 				<div className="flex flex-shrink-0 sm:mr-6">
-					<h1 className="text-md uppercase text-bold border border-white rounded p-2 inline-block">Company Name</h1>
+					<p className="px-2">Browse</p>
+					<p className="px-2">About</p>
+					<p className="px-2">Services</p>
+					
 				</div>
 
-				<div className="w-full mt-2 sm:mt-0">
-					<div className="flex flex-col sm:flex-row">
-						<Link href="/browse"><a className="block sm:inline-block ml-3 sm:ml-0 sm:mr-4 mt-2 sm:mt-0">Browse</a></Link>
-						<a className="block sm:inline-block ml-3 sm:ml-0 sm:mr-4 mt-2 sm:mt-0">About</a>
-					</div>
-				</div>
 			</nav>
 			
-				<h1 className="pt-48 sm:pt-32 text-4xl text-center p-8 text-gray-800">Company Name</h1>
-				
-				<div className="flex justify-center mb-16 text-xs sm:text-base">
-					<button className="border-b border-black px-2 sm:px-3 py-1">Log in</button>
-					<span className="mx-3 pt-1">or</span>
-					<button className="border-b border-black px-2 sm:px-3 py-1">Sign up</button>
+			<div className="pt-20 sm:pt-48"></div>
+			
+			<div className="">
+				<div className=" p-5 w-auto">
+					<h1 className="mb-8 text-5xl text-center text-color-2 tracking-wide font-extrabold mx-auto">grasspart.</h1>
+					<p className="text-gray-600 w-auto sm:w-1/3 text-center mx-auto">A <span className="text-color-2 font-bold">social platform</span> made for merchants and alike where one can use our services free of cost to advertise products or buy from others.</p>
 				</div>
-				
-				<div className="max-w-xs sm:max-w-md mt-16 mx-auto p-8 sm:p-5 border border-gray-500 rounded">
-					<p className="text-justify text-gray-800">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut imperdiet est. Duis nec diam condimentum, scelerisque nunc vitae, suscipit ante. Proin lacus lacus, ullamcorper eget pellentesque vel, commodo eget libero. Nam vulputate urna nec turpis ultricies, quis rhoncus libero volutpat. Pellentesque a ante ornare, congue velit id, auctor tellus. Phasellus sit amet nunc sit amet urna accumsan rhoncus scelerisque et ex. Phasellus lobortis sapien lorem, quis gravida felis laoreet elementum.
-					</p>
-				</div>
-				
+			</div>
+			
 			</div>
 		</>
 	)	
 }
 
 export default Index
+	
