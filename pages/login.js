@@ -22,20 +22,20 @@ import Link from "next/link"
 	return (
 		<div className="w-full max-w-xs mx-auto mt-16">
 			<form className="border shadow-md rounded px-8 py-8">
-				<div className="mb-6">
-					<label className="tracking-wide font-bold text-xs text-gray-700 block mb-1 uppercase">Username</label>
-					<input ref={usernameRef} className="tracking-wide bg-gray-200 text-gray-700 w-full border border-gray-300 rounded px-3 py-2" placeholder="Username"/>
+				<div className="mb-8">
+					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
+					<input ref={usernameRef} className="text-gray-600 tracking-wide w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
 				</div>
-				<div className="mb-6">
-					<label className="tracking-wide font-bold text-xs text-gray-700 block mb-1 uppercase">Password</label>
-					<input ref={passwordRef} type="password" className="tracking-wide bg-gray-200 text-gray-700 w-full border border-gray-300 rounded px-3 py-2" placeholder="Password"/>
+				<div className="mb-8">
+					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
+					<input ref={passwordRef} type="password" className="text-gray-600 tracking-wide w-full border-b border-color-2  px-4 py-2" placeholder="Password"/>
 				</div>
-				<div className="mb-6">
-					<button onClick={handleForm} type="button" className="px-2 py-1 w-full bg-gray-700 rounded text-gray-200 tracking-wide hover:bg-gray-500 hover:text-gray-700">Login</button>
+				<div className="mb-8">
+					<button onClick={handleForm} type="button" className="px-2 py-1 w-full bg-color-2 rounded text-color-1 tracking-wide hover:bg-gray-500 hover:text-gray-700">Login</button>
 				</div>
-				<a className="mb-4 text-center text-xs underline text-gray-800 block">Forgot password?</a>
-				<p className="text-center text-gray-800 text-xs">or</p>
-				<Link href="/register"><a className="mt-2  text-center text-xs text-gray-800 block underline ">Create an account.</a></Link>
+				<a className="mb-4 text-center text-xs underline text-color-2 block">Forgot password?</a>
+				<p className="text-center text-gray-600 text-xs">or</p>
+				<Link href="/register"><a className="mt-2  text-center text-xs text-color-2 block underline ">Create an account.</a></Link>
 				
 			</form>
 		</div>

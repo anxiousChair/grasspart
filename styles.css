@@ -3,6 +3,3 @@
 @tailwind utilities;
 
 
-form input{
-	@apply border-b border-black;
-}

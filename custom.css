@@ -14,12 +14,11 @@ body{
 	background-color: #1D1D35;
 }
 
-.text-color-1{
+.text-color-1{ /* whitegreenidh */
 	color:#F2FCF5;
-	border-color: #F2FCF5
 }
 
-.text-color-2{
+.text-color-2{ /* good green */
 	color: #61BB85;
 }
 
@@ -29,4 +28,12 @@ body{
 
 .text-color-4{
 	color: #6C9B7D;
+}
+
+.border-color-1{
+	border-color: #F2FCF5
+}
+
+.border-color-2{
+	border-color: #61BB85
 }

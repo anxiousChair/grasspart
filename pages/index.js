@@ -4,7 +4,7 @@ function Index(){
 	return (
 		<>
 			<div>
-			<nav className="bg-color-2 fixed flex justify-center sm:justify-between items-center flex-col sm:flex-row bg-gray-800 text-color-1 p-2 sm:p-3 w-full">
+			<nav className="bg-color-2 fixed flex justify-center sm:justify-between items-center flex-col sm:flex-row text-color-1 p-2 sm:p-3 w-full">
 
 				<div className="flex flex-shrink-0 sm:mr-6">
 					<p className="px-2">Browse</p>
