@@ -24,7 +24,7 @@ import Link from "next/link"
 			<form className="border shadow-md rounded px-8 py-8">
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input ref={usernameRef} className="text-gray-600 tracking-wide w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
+					<input ref={usernameRef} className="outline-none text-gray-600 tracking-wide w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>

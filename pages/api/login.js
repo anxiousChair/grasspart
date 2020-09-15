@@ -34,6 +34,7 @@ async function handler(req,res,session){
 			success = true
 		}
 	}
+	await User.disconnect()
 	res.statusCode = success ? 200:406
 	res.end()
 }
