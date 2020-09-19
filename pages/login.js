@@ -4,31 +4,37 @@ import {useRef,useState} from "react"
 import {useRouter} from "next/router"
 import Link from "next/link"
 
+import $ from "jquery"
+
 
  function Login(props){
+	const borders = ["border-b border-color-2", "border border-red-500"]
 	const usernameRef = useRef(null)
 	const passwordRef = useRef(null)
 	const axios = require("axios")
 	const router = useRouter()
+	
 
 	const handleForm = function(){
-		axios.post('/api/login', {
+		axios.post('/api/authenticate', {
 			username: usernameRef.current.value,
 			password: passwordRef.current.value
 		  }).then(()=>router.push("/browse")).catch((err) => alert("catch" +err))
 	}
 	
-
+	let errorBorder = (id)=>$(id).removeClass(borders[0]).addClass(borders[1])
+	let normBorder = (id)=>$(id).removeClass(borders[1]).addClass(borders[0])
+	
 	return (
 		<div className="w-full max-w-xs mx-auto mt-16">
 			<form className="border shadow-md rounded px-8 py-8">
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input ref={usernameRef} className="outline-none text-gray-600 tracking-wide w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
+					<input ref={usernameRef} onBlur={normBorder.bind(null,"#username")} id="username" className="outline-none text-gray-600 tracking-wide w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
-					<input ref={passwordRef} type="password" className="text-gray-600 tracking-wide w-full border-b border-color-2  px-4 py-2" placeholder="Password"/>
+					<input ref={passwordRef} id="password" type="password" className="text-gray-600 tracking-wide w-full border-b border-color-2  px-4 py-2" placeholder="Password"/>
 				</div>
 				<div className="mb-8">
 					<button onClick={handleForm} type="button" className="px-2 py-1 w-full bg-color-2 rounded text-color-1 tracking-wide hover:bg-gray-500 hover:text-gray-700">Login</button>

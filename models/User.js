@@ -33,9 +33,13 @@ const User = {
 		const res = await agent.query("SELECT user_username,user_password FROM users WHERE user_username = $1",values)
 		if(!res || !res.rowCount) return false
 		const [data] = res.rows
-		const coldy = blanket.SHA256(credentials.username + credentials.password).toString(blanket.enc.Base64)
-		if(data.user_password === coldy) return true
-		return false
+		const coldy = await blanket(credentials.password,credentials.username + credentials.username)
+		
+		return (data.user_password === coldy.toString("hex")) ? true:false
+	},
+	fetchID: async(username)=>{
+		const res = await agent.query("SELECT user_id FROM users WHERE user_username = $1",[username])
+		return (res && res.rowCount) ? res.rows[0]:false
 	},
 	connect: async () =>{
 		let res = await agent.connect()

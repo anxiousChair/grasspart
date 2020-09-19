@@ -6,13 +6,11 @@ const User = require("../../models/User")
 async function handler(req,res){
 	let success = false
 	let connected = false
-	let body = !!req.body.username && !!req.body.password
+	let body = !!req.body.username && !!req.body.password && !!req.body.email
 	connected = await User.connect()
 	if(body && connected){
 		let res = await User.create(req.body)
-		if(res){
-			success = true
-		}
+		success = res ? true:false
 	}
 	res.statusCode = success ? 200:406
 	res.end()
