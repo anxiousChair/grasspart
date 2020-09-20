@@ -25,7 +25,7 @@ function Browse(props){
 			);*/
 			
 	return (
-		<Layout>
+		<Layout nav scripts={["holder.min.js","drop.min.js"]}>
 			<div className="pt-16 w-full flex flex-col sm:flex-row flex-grow">
 				<div id="buyer-list" className=" py-4 w-full dbg-bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center sm:items-start">
 					{error && <p onClick={()=>mutate()}>There seems to be an issue.</p> || !items && <p>Loading...</p> || items && items.map((item) => (
@@ -36,6 +36,7 @@ function Browse(props){
 						<p className="text-center text-gray-700 mb-4">User: {item.user_username}</p>
 				</div>
 				))}
+				
 				</div>
 				
 			</div>

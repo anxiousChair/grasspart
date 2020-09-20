@@ -5,13 +5,13 @@ export default function Layout(props){
 	return (
 		<>
 			<Head>
-				<script src="js/holder.min.js"></script>
+			
 			</Head>
 			<body>
-				<Nav/>
+				{props.nav && <Nav/>}
 				{props.children}
 			</body>
-			
+			{props.scripts && props.scripts.map((item)=><script src={"js/"+item}></script>)}
 		</>
 	)
 }
