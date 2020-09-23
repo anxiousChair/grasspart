@@ -7,7 +7,8 @@ const User = {
 		const coldy = await blanket(data.password,data.username + data.username)
 		const values = [data.username,coldy.toString("hex"),data.email]
 		const res = await agent.query("INSERT INTO users(user_username,user_password,user_email,user_token) VALUES($1,$2,$3,NULL)",values)
-		return (res && res.rowCount) ? true: false
+		console.log(res.code)
+		return (res && res.rowCount) ? true: res
 		
 	},
 	userExist: async(user) => {
@@ -23,7 +24,6 @@ const User = {
 		return res.rowCount ? true:false
 	},
 	verifySession: async (session) => {
-		console.log("entered")
 		const res = await agent.query("SELECT user_token FROM users WHERE user_username = $1",[session.user])
 		const [data] = res.rows
 		return (session.token == data.user_token) ? true:false
