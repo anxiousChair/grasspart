@@ -7,14 +7,15 @@ import {useState} from "react"
 import $ from "jquery"
 
 const axios = require("axios")
-const callFuncs = require("../functions/callFuncs")
+
 
 
 function Register(){
-	const {register, handleSubmit, errors, setError,reset} = useForm({mode:"onChange",shouldFocusError:false})
+	const {register, handleSubmit, errors, setError,reset,trigger} = useForm({mode:"onChange",shouldFocusError:false})
 	const router = useRouter()
 	const [flashmsg, setFlashmsg] = useState(null)
-	const [userExist, setUserExist] = useState(false)
+	const [loading, setLoading] = useState(null)
+	const [available, setAvailable] = useState(null)
 	
 	const onSubmit = async function(data){
 		let classes = "shadow-lg p-2 text-white rounded text-sm mb-5"
@@ -36,22 +37,28 @@ function Register(){
 	}
 	
 	const isExist = async(e)=>{
-		
+		if(!e.target.value) trigger("username")
+		setLoading(<p className="text-xs mt-2 text-gray-500 font-bold">Fetching...</p>)
 		let res = await axios.post("/api/corporeality",{username:e.target.value})
 		if(res.data){
+			setAvailable(null)
 			setError("username",{
 				type:"userexist",
 				message:"Username already exist."
 			})
+		}else{
+			if(!errors.username)
+				setAvailable(<p className="text-xs mt-2 text-color-2 font-bold">User available.</p>)
 		}
 		updateBorder("username")
+		setLoading(null)
 		
 	}
 	
 	const confirmPass = (value)=> value == $("#password").val()
 	
 	//slap'em error boxes
-	const doError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2">*{data}</p>
+	const doError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2 font-bold">{data}</p>
 	
 	const updateBorder	= async(id)=>{
 		const string = id+""
@@ -70,13 +77,13 @@ function Register(){
 				{flashmsg}
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist}  className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
-					{errors.username && errors.username.type == "userexist" && doError(errors.username.message) || errors.username && doError("Username must have at least 5 characters")}
+					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist}  className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Username" autocomplete="off"/>
+					{errors.username && errors.username.type == "userexist" && doError(errors.username.message) || errors.username && doError("Username must contain at least 5 characters") || loading || available}
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
 					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} onChange={updateBorder.bind(null,"password")} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Password"/>
-					{errors.password && doError("Password must have at least 8 characters.")}
+					{errors.password && doError("Password must contain at least 8 characters.")}
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Confirm password.</label>
