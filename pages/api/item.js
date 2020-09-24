@@ -4,14 +4,15 @@ import {configSession} from "../../lib/ironSession"
 const Item = require("../../models/Item")
 
 async function handler(req,res){
-	let success, connected, body
+	let success, connected
 	success = connected = false
-	body = !!req.body.itemName && !!req.body.itemImage && !!req.body.itemDesc
+	const body = !!req.body.name && !!req.body.image && !!req.body.desc 
 	if(body){
 		connected = await Item.connect()
 		if(connected){
 			//create product
-			success = true
+			let res = await Item.create(body)
+			success = res
 		}
 	}
 	await Item.disconnect()

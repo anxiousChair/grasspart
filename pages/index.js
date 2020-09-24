@@ -6,8 +6,8 @@ function Index(){
 			<div>
 			<nav className="bg-color-2 fixed flex justify-center sm:justify-between items-center flex-col sm:flex-row text-color-1 p-2 sm:p-3 w-full">
 
-				<div className="flex flex-shrink-0 sm:mr-6">
-					<p className="px-2">Browse</p>
+				<div className="flex flex-shrink-0 sm:mr-6 font-bold">
+					<Link href="/browse"><p className="px-2">Browse</p></Link>
 					<p className="px-2">About</p>
 					<p className="px-2">Services</p>
 					

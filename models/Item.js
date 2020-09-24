@@ -14,9 +14,10 @@ const Item = {
 	connect: async()=>{
 		const res = await agent.connect()
 		return res
+		
 	},
 	disconnect: async()=>{
-		const res = await agent.disconnect()
+		await agent.disconnect()
 	}
 }
 
