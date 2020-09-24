@@ -7,6 +7,7 @@ import {useState} from "react"
 import $ from "jquery"
 
 const axios = require("axios")
+const callFuncs = require("../functions/callFuncs")
 
 
 function Register(){
@@ -35,23 +36,32 @@ function Register(){
 	}
 	
 	const isExist = async(e)=>{
+		
 		let res = await axios.post("/api/corporeality",{username:e.target.value})
 		if(res.data){
 			setError("username",{
 				type:"userexist",
 				message:"Username already exist."
 			})
-			setUserExist(true)
-			return null
 		}
-		setUserExist(false)
+		updateBorder("username")
 		
 	}
 	
 	const confirmPass = (value)=> value == $("#password").val()
 	
 	//slap'em error boxes
-	const doError = (data)=> <p className="border border-red-400 text-gray-600 text-sm rounded p-2 mt-2">{data}</p>
+	const doError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2">*{data}</p>
+	
+	const updateBorder	= async(id)=>{
+		const string = id+""
+		const element = $("#"+""+id)
+		if(errors[id+""]){
+			element.removeClass("border-color-2").addClass("border-red-500")
+		}else{
+			element.removeClass("border-red-500").addClass("border-color-2")
+		}
+	}
 	
 	return (
 
@@ -60,17 +70,17 @@ function Register(){
 				{flashmsg}
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
+					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist}  className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Username"/>
 					{errors.username && errors.username.type == "userexist" && doError(errors.username.message) || errors.username && doError("Username must have at least 5 characters")}
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
-					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Password"/>
+					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} onChange={updateBorder.bind(null,"password")} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Password"/>
 					{errors.password && doError("Password must have at least 8 characters.")}
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Confirm password.</label>
-					<input type="password" name="confirmPassword" ref={register({required:true,validate:confirmPass})} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Confirm password"/>
+					<input type="password" id="confirmPassword" name="confirmPassword" ref={register({required:true,validate:confirmPass})} onChange={updateBorder.bind(null,"confirmPassword")} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Confirm password"/>
 					{errors.confirmPassword && doError("Password doesn't match.")}
 				</div>
 				<div className="mb-8">

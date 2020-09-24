@@ -21,21 +21,22 @@ async function handler(req,res,session){
 	let success = false
 	let connected = false
 	let body = !!req.body.username && !!req.body.password
-	
+	let result = null
 	
 	connected = await User.connect()
 	console.log(connected,body)
 	
 	if(body && connected){
-		const result = await User.verifyUser(req.body)
+		result = await User.verifyUser(req.body)
 		if(result){
 			req.session.set("apparel",{id:req.body.username})
 			await req.session.save()
 			success = true
 		}
+		await User.disconnect()
 	}
-	await User.disconnect()
-	res.statusCode = success ? 200:406
+	
+	res.write(result ? "1":"0")
 	res.end()
 }
 
