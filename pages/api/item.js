@@ -16,7 +16,7 @@ async function handler(req,res){
 		}
 	}
 	await Item.disconnect()
-	res.statusCode = success ? 200:406
+	res.write(success ? "1":"0")
 	res.end()
 }
 

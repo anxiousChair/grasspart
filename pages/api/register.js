@@ -1,6 +1,3 @@
-import {withIronSession} from "next-iron-session"
-import {configSession} from "../../lib/ironSession"
-
 const User = require("../../models/User")
 
 //need tweaking
@@ -23,7 +20,7 @@ async function handler(req,res){
 		
 		await User.disconnect()
 	}else{
-		response.text = "Something horrible happened. huhu"
+		response.text = "Something terrible happened. huhu :("
 		response.code = -1
 	}
 	res.statusCode = 200
@@ -31,4 +28,4 @@ async function handler(req,res){
 	res.end()
 }
 
-export default withIronSession(handler,configSession)
+export default handler
