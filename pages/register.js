@@ -2,7 +2,7 @@ import Link from "next/link"
 import {useRouter} from "next/router"
 import {useForm} from "react-hook-form"
 import Head from "next/head"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 import $ from "jquery"
 
@@ -11,11 +11,29 @@ const axios = require("axios")
 
 
 function Register(){
+	const input_style = "tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2"
 	const {register, handleSubmit, errors, setError,reset,trigger} = useForm({mode:"onChange",shouldFocusError:false})
 	const router = useRouter()
 	const [flashmsg, setFlashmsg] = useState(null)
 	const [loading, setLoading] = useState(null)
 	const [available, setAvailable] = useState(null)
+	
+	const updateBorder = (id)=>{
+		const string = id+""
+		const element = $("#"+""+id)
+		if(errors[id+""]){
+			element.removeClass("border-color-2").addClass("border-red-500")
+		}else{
+			element.removeClass("border-red-500").addClass("border-color-2")
+		}
+		return true
+	}
+	
+	useEffect(()=>{
+		updateBorder("username")
+		updateBorder("password")
+		updateBorder("confirmPassword")
+	},[errors.username,errors.password,errors.confirmPassword])
 	
 	const onSubmit = async function(data){
 		let classes = "shadow-lg p-2 text-white rounded text-sm mb-5"
@@ -26,7 +44,7 @@ function Register(){
 			const res = await axios.post("/api/register", data)
 			const bgcolor = res.data.code>0 && res.data.code ? "bg-green-500":"bg-red-500"
 			setFlashmsg(<p className={bgcolor+" "+classes}>{res.data.text}</p>)
-			setTimeout(()=>router.push("/login"),2000)
+			if(res.data.code == 1) setTimeout(()=>router.push("/login"),2000)
 		}catch(err){
 			setFlashmsg(<p className="shadow-lg p-2 bg-red-500 text-white rounded text-sm mb-5">Error: Something unusual happened. Notify dev.</p>)
 		}finally{
@@ -50,7 +68,6 @@ function Register(){
 			if(!errors.username)
 				setAvailable(<p className="text-xs mt-2 text-color-2 font-bold">User available.</p>)
 		}
-		updateBorder("username")
 		setLoading(null)
 		
 	}
@@ -60,15 +77,6 @@ function Register(){
 	//slap'em error boxes
 	const printError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2 font-bold">{data}</p>
 	
-	const updateBorder	= async(id)=>{
-		const string = id+""
-		const element = $("#"+""+id)
-		if(errors[id+""]){
-			element.removeClass("border-color-2").addClass("border-red-500")
-		}else{
-			element.removeClass("border-red-500").addClass("border-color-2")
-		}
-	}
 	
 	return (
 
@@ -77,12 +85,12 @@ function Register(){
 				{flashmsg}
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Username" autocomplete="off"/>
+					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist} className={input_style} placeholder="Username" autoComplete="off"/>
 					{errors.username && errors.username.type == "userexist" && printError(errors.username.message) || errors.username && printError("Username must contain at least 5 characters") || loading || available}
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
-					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} onChange={updateBorder.bind(null,"password")} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Password"/>
+					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} className={input_style} placeholder="Password"/>
 					{errors.password && printError("Password must contain at least 8 characters.")}
 				</div>
 				<div className="mb-8">
@@ -100,6 +108,7 @@ function Register(){
 		</div>
 		
 	)
+	
 }
 
 export default Register

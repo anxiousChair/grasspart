@@ -1,4 +1,4 @@
-import "../styles.css"
+import "../styles/tailwind.css"
 import "../custom.css"
 import {AuthProvider} from "../context/Auth.js"
 

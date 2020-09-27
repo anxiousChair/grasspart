@@ -4,6 +4,12 @@ const User = require("../../models/User")
 
 
 async function handler(req,res){
+	if(req.method != "POST"){
+		res.statusCode = 200
+		res.write("Huh?")
+		res.end()
+		return
+	}
 	let success = false, connected = false
 	let body = !!req.body.username && !!req.body.password
 	
