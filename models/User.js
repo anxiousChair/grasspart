@@ -1,10 +1,11 @@
 const agent = require("../lib/pg_db.js")
-const blanket = require("../lib/procScrypt")
+const {hashScrypt, generateToken} = require("../lib/crypto")
+const crypto = require("crypto-js")
 
 
 const User = {
 	create: async(data)=>{
-		const coldy = await blanket(data.password,data.username + data.username)
+		const coldy = await hashScrypt(data.password,data.username + data.username)
 		const values = [data.username,coldy.toString("hex"),data.email]
 		const res = await agent.query("INSERT INTO users(user_username,user_password,user_email,user_token) VALUES($1,$2,$3,NULL)",values)
 		console.log(res.code)
@@ -33,13 +34,16 @@ const User = {
 		const res = await agent.query("SELECT user_username,user_password FROM users WHERE user_username = $1",values)
 		if(!res || !res.rowCount) return false
 		const [data] = res.rows
-		const coldy = await blanket(credentials.password,credentials.username + credentials.username)
+		const coldy = await hashScrypt(credentials.password,credentials.username + credentials.username)
 		
 		return (data.user_password === coldy.toString("hex")) ? true:false
 	},
 	fetchID: async(username)=>{
 		const res = await agent.query("SELECT user_id FROM users WHERE user_username = $1",[username])
 		return (res && res.rowCount) ? res.rows[0]:false
+	},
+	generateToken: async(user_id)=>{
+		
 	},
 	connect: async () =>{
 		let res = await agent.connect()
