@@ -20,11 +20,11 @@ import $ from "jquery"
 		const button = $("#button")
 		button.html("Loading...")
 		const res = await axios.post('/api/authenticate',data)
-		if(!res.data){
+		if(!res.data.code){
 			setFlash(<p className="shadow-lg p-2 bg-red-500 text-white rounded text-sm mb-5">Invalid username or password.</p>)
 			button.html("Login")
 			
-		}else router.push("/browse")
+		}else res.data.code == 1 ? router.push("/browse"):setFlash(<p className="shadow-lg p-2 bg-red-500 text-white rounded text-sm mb-5">{res.data.text}</p>)
 		
 		button.html("Login")
 	}
@@ -40,7 +40,7 @@ import $ from "jquery"
 				</div>
 				<div className="mb-8">
 					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
-					<input name="password" ref={register} id="password" type="password" className="text-gray-600 tracking-wide w-full border-b border-color-2  px-4 py-2" placeholder="Password"/>
+					<input name="password" ref={register} id="password" type="password" className="outline-none text-gray-600 tracking-wide w-full border-b border-color-2  px-4 py-2" placeholder="Password"/>
 				</div>
 				<div className="mb-8">
 					<button type="submit" id="button" className="px-2 py-1 w-full bg-color-2 rounded text-color-1 tracking-wide hover:bg-gray-500 hover:text-gray-700">Login</button>

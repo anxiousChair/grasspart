@@ -7,11 +7,10 @@ export default function Layout(props){
 			<Head>
 			
 			</Head>
-			<body>
 				{props.nav && <Nav/>}
 				{props.children}
-			</body>
 			{props.scripts && props.scripts.map((item)=><script src={"js/"+item}></script>)}
+			
 		</>
 	)
 }

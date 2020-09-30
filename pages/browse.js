@@ -10,6 +10,8 @@ function Browse(props){
 		
 	}
 	
+	const printError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2 font-bold">{data}</p>
+	
 	const {data: items,error, isValidating, mutate} = useSWR("/api/fetchItems",fetcher)
 	
 	
@@ -28,14 +30,14 @@ function Browse(props){
 		<Layout nav scripts={["holder.min.js","drop.min.js"]}>
 			<div className="pt-16 w-full flex flex-col sm:flex-row flex-grow">
 				<div id="buyer-list" className=" py-4 w-full dbg-bg-gray-200 flex flex-col sm:flex-row sm:flex-wrap flex-grow justify-between items-center sm:items-start">
-					{error && <p onClick={()=>mutate()}>There seems to be an issue.</p> || !items && <p>Loading...</p> || items && items.map((item) => (
-				<div id="item-card" className="border w-4/5 sm:w-1/5 mx-1 shadow mb-8 py-3 rounded">
-						<img className="w-full px-1 rounded mx-auto mb-3" src="holder.js/128x128"/>
-						<h1 className="font-bold text-center text-gray-700 mb-2 text-xl">{item.item_name}</h1>
-						<h1 className="font-bold text-center text-color-2 mb-2">PHP {item.item_price}</h1>
-						<p className="text-center text-gray-700 mb-4">User: {item.user_username}</p>
-				</div>
-				))}
+					{error && <p className="bg-red-500 p-2 text-white text-xs rounded  mt-2" onClick={()=>mutate()}>There seems to be an issue. Click to try again.</p> || !items && <p>Loading...</p> || items && items.map((item) => (
+						<div id="item-card" className="border w-4/5 sm:w-1/5 mx-1 shadow mb-8 py-3 rounded">
+							<img className="w-full px-1 rounded mx-auto mb-3" src="holder.js/128x128"/>
+							<h1 className="font-bold text-center text-gray-700 mb-2 text-xl">{item.item_name}</h1>
+							<h1 className="font-bold text-center text-color-2 mb-2">PHP {item.item_price}</h1>
+							<p className="text-center text-gray-700 mb-4">User: {item.user_username}</p>
+						</div>
+						))}
 				
 				</div>
 				

@@ -18,13 +18,14 @@ async function handler(req,res,session){
 		time: time.toString()
 	}))
 	
+	let response = {text:"Something terrible happened. :( huhu",code:-1}
+	
 	let success = false
 	let connected = false
 	let body = !!req.body.username && !!req.body.password
 	let result = null
 	
 	connected = await User.connect()
-	console.log(connected,body)
 	
 	if(body && connected){
 		result = await User.verifyUser(req.body)
@@ -32,11 +33,12 @@ async function handler(req,res,session){
 			req.session.set("apparel",{id:req.body.username})
 			await req.session.save()
 			success = true
-		}
+			response.code = 1
+		}else response.code = 0
 		await User.disconnect()
 	}
 	
-	res.write(result ? "1":"0")
+	res.write(JSON.stringify(response))
 	res.end()
 }
 

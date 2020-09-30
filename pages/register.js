@@ -3,11 +3,20 @@ import {useRouter} from "next/router"
 import {useForm} from "react-hook-form"
 import Head from "next/head"
 import {useState, useEffect} from "react"
+import validator from "validator"
 
 import $ from "jquery"
 
 const axios = require("axios")
 
+
+const userErr = {
+	required: "Username is required.",
+	minLength: "Username must contain at least 5 characters",
+	validate: "Username must be an alphanumeric.",
+	userexist: "Username is not available.",
+	server_err: "Something terrible happened. :( huhu"
+}
 
 
 function Register(){
@@ -60,10 +69,7 @@ function Register(){
 		let res = await axios.post("/api/corporeality",{username:e.target.value})
 		if(res.data){
 			setAvailable(null)
-			setError("username",{
-				type:"userexist",
-				message:"Username already exist."
-			})
+			res.data == 1 ? setError("username",{type:"userexist"}):setError("username",{type:"server_err"})
 		}else{
 			if(!errors.username)
 				setAvailable(<p className="text-xs mt-2 text-color-2 font-bold">User available.</p>)
@@ -74,7 +80,7 @@ function Register(){
 	
 	const confirmPass = (value)=> value == $("#password").val()
 	
-	//slap'em error boxes
+	//slap'em error msgs
 	const printError = (data)=> <p className=" text-red-500 text-xs rounded  mt-2 font-bold">{data}</p>
 	
 	
@@ -84,17 +90,17 @@ function Register(){
 			<form className="border shadow-md rounded px-8 py-8" onSubmit={handleSubmit(onSubmit)} id="form">
 				{flashmsg}
 				<div className="mb-8">
-					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
-					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5})} onBlur={isExist} className={input_style} placeholder="Username" autoComplete="off"/>
-					{errors.username && errors.username.type == "userexist" && printError(errors.username.message) || errors.username && printError("Username must contain at least 5 characters") || loading || available}
+					<label className="outline-none tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Username</label>
+					<input type="text" id="username" name="username" ref={register({required:true,maxLength:40,minLength:5,validate: (val)=>validator.isAlphanumeric(validator.rtrim(validator.ltrim(val)))})} onBlur={isExist} className={input_style} placeholder="Username" autoComplete="off"/>
+					{errors.username && errors.username.type  && printError(userErr[errors.username.type]) || loading || available}
 				</div>
 				<div className="mb-8">
-					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
+					<label className="outline-none tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Password</label>
 					<input id="password" type="password" name="password" ref={register({required:true,minLength:8})} className={input_style} placeholder="Password"/>
 					{errors.password && printError("Password must contain at least 8 characters.")}
 				</div>
 				<div className="mb-8">
-					<label className="tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Confirm password.</label>
+					<label className="outline-none tracking-wide font-bold text-xs text-color-2 block mb-1 uppercase">Confirm password.</label>
 					<input type="password" id="confirmPassword" name="confirmPassword" ref={register({required:true,validate:confirmPass})} onChange={updateBorder.bind(null,"confirmPassword")} className="tracking-wide text-gray-600 w-full border-b border-color-2 px-4 py-2" placeholder="Confirm password"/>
 					{errors.confirmPassword && printError("Password doesn't match.")}
 				</div>

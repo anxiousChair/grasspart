@@ -4,21 +4,21 @@ const User = require("../../models/User.js")
 
 export default async function(req,res){
 	if(req.method != "POST"){
-		res.write("0")
+		res.write("-1")
 		res.end()
 		return
 	}
 	const body = !!req.body.username
-	console.log(req.headers)
-	let success = false, result = false
+	let success = false, result = false, code = "-1"
 	if(body){
 		const connected = await User.connect()
 		if(connected){
 			result = await User.userExist(req.body.username)
-			User.disconnect()
+			await User.disconnect()
+			code = result ? "1":"0"
 		}
 	}
-	res.write(result? "1":"0")
+	res.write(code)
 	res.end()
 }
 
